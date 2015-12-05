@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package PaqueteUsuarioAdministrador;
+
 import java.sql.Connection;
 import ConexionSQLServer.ConexionSQLServer;
 import java.sql.ResultSet;
@@ -13,14 +14,12 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Jojann_2
+ * @author eduartandres
  */
+public class Sala {
+    private Connection Conexion=null;
 
-public class Administrador {
-     private Connection Conexion=null;
-    
-
-public Administrador() 
+ public Sala()
 {
     Conexion= ConexionSQLServer.GetConnection(); 
 }
@@ -47,9 +46,7 @@ public String InsertSala(String puestos, String nombre_sala){
             JOptionPane.showMessageDialog(null,"FALLO CONEXION A LA BASE DE DATOS");
         }
       return respuesta;
-    
+  
 }
 }
-
-
 
