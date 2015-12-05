@@ -387,9 +387,8 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
         int filas= jTable1.getRowCount();
         
         try {
-           
-            
-            for (int i = 0;filas>i; i++) {
+            for (int i = 0;filas>i; i++) 
+            {
                 Modelo.removeRow(0);
             }
         } catch (Exception e) {

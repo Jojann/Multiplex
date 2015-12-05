@@ -5,17 +5,44 @@
  */
 package PaqueteUsuarioNormal;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import PaqueteUsuarioAdministrador.Funcion;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jojann_2
  */
 public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
-
+    
+    
+    private Funcion InstanciaFuncion= new Funcion();
+    
+    DefaultTableModel Modelo;
     /**
      * Creates new form InterfazAgregarNuevaReserva
      */
     public InterfazAgregarNuevaReserva() {
         initComponents();
+        
+        Modelo=(DefaultTableModel) jTable1.getModel();
+        Modelo.setColumnCount(0);
+        
+        Modelo.addColumn("Codigo");
+        Modelo.addColumn("Pelicula");
+        Modelo.addColumn("Director");
+        Modelo.addColumn("Fecha");
+        Modelo.addColumn("Hora Inicio");
+        Modelo.addColumn("Hora Fin");
+        Modelo.addColumn("Valor boleto");
+        Modelo.addColumn("Numero Boletas");
+
+        
+        Modelo.setNumRows(0);
+        
+        ListarFuncionesActivas();
     }
 
     /**
@@ -74,13 +101,19 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(204, 204, 204))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(35, 35, 35)
+                                .addComponent(jButton1)
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,19 +121,21 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(104, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +147,13 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -159,10 +201,25 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     
     public void ListarFuncionesActivas()
     {
-        
-    
-    
-    
+   
+        ResultSet Listado= InstanciaFuncion.ListarFunciones();
+
+        try {
+            if(Listado!=null)
+            {   
+                while(Listado.next())
+                {   
+                    Modelo.addRow(new Object[]{Listado.getString("id_funcion"),Listado.getString("nombre"),Listado.getString("director"),Listado.getString("fecha"),Listado.getString("hora_inicio"),Listado.getString("hora_fin"),Listado.getString("valor"),"0"});
+                }
+                
+            }else
+            {
+                JOptionPane.showMessageDialog(null,"CONSULTA EN BLANCO");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Falla: "+ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

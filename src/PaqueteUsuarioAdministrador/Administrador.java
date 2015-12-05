@@ -26,7 +26,7 @@ public Administrador()
 }
 
 
-public String InsertSala(String puestos, String nombre_sala){
+public String InsertSala(String id_sala, String puestos, String nombre_sala){
      
     String respuesta=null;
       if(Conexion!=null)
@@ -35,7 +35,7 @@ public String InsertSala(String puestos, String nombre_sala){
             try {
                 
                 EjecutarSentencia = Conexion.createStatement();
-                String Consulta="INSERT INTO sala (puestos,nombre_sala,cupos_disponibles,estado) VALUES ("+puestos+","+nombre_sala+","+puestos+",0)";
+                String Consulta="INSERT INTO sala (id_sala,puestos,nombre_sala,cupos_disponibles,estado) VALUES ("+id_sala+","+puestos+","+nombre_sala+","+puestos+",0)";
                  EjecutarSentencia.executeUpdate(Consulta);
                                 
             } catch (SQLException ex) {
