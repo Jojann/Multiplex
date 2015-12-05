@@ -8,7 +8,7 @@ package multiplex;
 import javax.swing.JOptionPane;
 import PaqueteUsuarioNormal.Usuario;
 import PaqueteUsuarioNormal.InterfazPrincipalUsuario;
-import PaqueteUsuarioAdministrador.InterfazPrincipalAdmistrador;
+import PaqueteUsuarioAdministrador.InterfazPrincipalAdministrador;
 
 /**
  *
@@ -132,9 +132,22 @@ public class Multiplex extends javax.swing.JFrame {
         
         if(InstanciaUsuario.ValidarLogin(user, pw))
         {   
-            InterfazPrincipalUsuario InstanciaInterfazPrincipal= new InterfazPrincipalUsuario(InstanciaUsuario);           
-            this.setVisible(false);// Oculta la ventana de Login
-            InstanciaInterfazPrincipal.Mostrar(InstanciaUsuario);
+            
+            JOptionPane.showMessageDialog(null,InstanciaUsuario.getRol());
+            
+            if("Usuario".equals(InstanciaUsuario.getRol().trim()))
+            {
+                InterfazPrincipalUsuario InstanciaInterfazPrincipal= new InterfazPrincipalUsuario(InstanciaUsuario);           
+                this.setVisible(false);// Oculta la ventana de Login
+                InstanciaInterfazPrincipal.Mostrar(InstanciaUsuario);
+            }else
+            if("Administrador".equals(InstanciaUsuario.getRol().trim()))
+            {
+                InterfazPrincipalAdministrador InstanciaInterfazAdministrador= new InterfazPrincipalAdministrador();           
+                this.setVisible(false);// Oculta la ventana de Login
+                InstanciaInterfazAdministrador.Mostrar();
+            }
+
             
         }else
         {

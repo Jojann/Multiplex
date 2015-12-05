@@ -23,10 +23,16 @@ public class Usuario {
     private String Nombre;
     private String Apellido;
     private String Celular;
+    private String Rol;
     
     public Usuario()
     {
         Conexion= ConexionSQLServer.GetConnection();
+    }
+    
+    public String getRol()
+    {
+        return Rol;
     }
     
     public boolean ValidarLogin(String user, String pw)
@@ -48,6 +54,7 @@ public class Usuario {
                     Nombre=Respuesta.getString("Nombre");
                     Apellido=Respuesta.getString("apellido");
                     Celular=Respuesta.getString("celular");
+                    Rol=Respuesta.getString("Rol");
                     
                     return true;  
                 }else
