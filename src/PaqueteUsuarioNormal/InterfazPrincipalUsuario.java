@@ -6,6 +6,7 @@
 package PaqueteUsuarioNormal;
 
 import PaqueteUsuarioNormal.Usuario;
+import PaqueteUsuarioNormal.InterfazAgregarNuevaReserva;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -43,13 +44,14 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
     {   
         ResultSet Listado= InstanciaUsuario.ListadoReservasUsuario();
         
+        
+        
         try {
             if(Listado!=null)
             {   
-          
                 while(Listado.next())
                 {   
-                    Modelo.addRow(new Object[]{Listado.getString("nombre"),Listado.getString("numero_tiquetes"),Listado.getString("valor_total"),Listado.getString("fecha"),Listado.getString("hora_inicio"),Listado.getString("hora_fin")});
+                    Modelo.addRow(new Object[]{Listado.getString("id_reserva"),Listado.getString("nombre"),Listado.getString("numero_tiquetes"),Listado.getString("valor_total"),Listado.getString("fecha"),Listado.getString("hora_inicio"),Listado.getString("hora_fin")});
                 }
                 
             }else
@@ -72,7 +74,7 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
         Modelo=(DefaultTableModel) jTable1.getModel();
         Modelo.setColumnCount(0);
         
-        
+        Modelo.addColumn("Codigo");
         Modelo.addColumn("Pelicula");
         Modelo.addColumn("Numero Boletas");
         Modelo.addColumn("Valor total");
@@ -348,32 +350,55 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //Modelo.addRow(new Object[]{"1","2","3","4","5"});
+        InterfazAgregarNuevaReserva VentanaReserva= new InterfazAgregarNuevaReserva();
+        VentanaReserva.Mostrar();
+        
+         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        JOptionPane.showMessageDialog(null,jTable1.getSelectedRow() );
-        
+        CancelarFuncion();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
 
 //Método para obtener la fila seleccionada de la tabla.
-    private void eliminar(){
-        Integer seleccion=0;
+    private void CancelarFuncion(){
         
-        if(Modelo.getRowCount() > 0 )
+        String id_reserva="";
+        
+        if(jTable1.getSelectedRow() >= 0 )
         {
-        }
-        
-        else{
+            id_reserva=String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0));
+            InstanciaUsuario.CancelarReserva(id_reserva);
+            LimpiarTabla();
+            ListarReservas();
+            
+        }else
+        {
             JOptionPane.showMessageDialog(null, "Selecciona una fila.");
         }
     }
+    
+    public void LimpiarTabla(){
+        
+        int filas= jTable1.getRowCount();
+        
+        try {
+           
+            
+            for (int i = 0;filas>i; i++) {
+                Modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
+
+    }
+
+    
     
     
     

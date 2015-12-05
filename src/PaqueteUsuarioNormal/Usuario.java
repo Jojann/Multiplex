@@ -9,8 +9,6 @@ import ConexionSQLServer.ConexionSQLServer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -31,7 +29,7 @@ public class Usuario {
         Conexion= ConexionSQLServer.GetConnection();
     }
     
-    public boolean Validar(String user, String pw)
+    public boolean ValidarLogin(String user, String pw)
     {   
         
         if(Conexion!=null)
@@ -95,6 +93,25 @@ public class Usuario {
         
         
         return Listado;
+    }
+    
+    public void CancelarReserva(String id_reserva)
+    {
+        
+         Statement EjecutarSentencia;
+        
+            try {
+                EjecutarSentencia = Conexion.createStatement();
+                String Consulta="DELETE FROM Reserva WHERE id_reserva="+id_reserva+"";
+                //JOptionPane.showMessageDialog(null,Consulta);
+                EjecutarSentencia.executeUpdate(Consulta);
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"FALLO SENTENCIA: "+ex);
+            }
+    
+    
+       
     }
     
 }
