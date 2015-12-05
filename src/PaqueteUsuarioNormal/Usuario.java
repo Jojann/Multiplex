@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladorUsuario;
+package PaqueteUsuarioNormal;
 import java.sql.Connection;
-import ConexionBD.ConexionBD;
+import ConexionSQLServer.ConexionSQLServer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +28,7 @@ public class Usuario {
     
     public Usuario()
     {
-        Conexion= ConexionBD.GetConnection();
+        Conexion= ConexionSQLServer.GetConnection();
     }
     
     public boolean Validar(String user, String pw)

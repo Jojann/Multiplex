@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package InterfacesUsuario;
+package PaqueteUsuarioDocente;
 
 /**
  *
  * @author Jojann_2
  */
-public class InterfazPrincipalRegistro extends javax.swing.JPanel {
+public class InterfazPrincipalDocente extends javax.swing.JPanel {
 
     /**
-     * Creates new form InterfazPrincipalRegistro
+     * Creates new form InterfazPrincipalDocente
      */
-    public InterfazPrincipalRegistro() {
+    public InterfazPrincipalDocente() {
         initComponents();
     }
 

@@ -6,9 +6,9 @@
 package multiplex;
 
 import javax.swing.JOptionPane;
-import ControladorUsuario.Usuario;
-import InterfacesUsuario.InterfazPrincipalUsuario;
-import InterfacesUsuario.InterfazPrincipalAdmistrador;
+import PaqueteUsuarioNormal.Usuario;
+import PaqueteUsuarioNormal.InterfazPrincipalUsuario;
+import PaqueteUsuarioAdministrador.InterfazPrincipalAdmistrador;
 
 /**
  *

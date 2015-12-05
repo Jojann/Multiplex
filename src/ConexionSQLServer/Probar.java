@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ConexionBD;
+package ConexionSQLServer;
 
 /**
  *
@@ -20,7 +20,7 @@ public class Probar {
     public static void main(String[] args)
     {
         Connection miConexion;
-        miConexion= ConexionBD.GetConnection();
+        miConexion= ConexionSQLServer.GetConnection();
       
         if(miConexion!=null)
         {
