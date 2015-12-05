@@ -133,6 +133,7 @@ public class Multiplex extends javax.swing.JFrame {
         if(InstanciaUsuario.Validar(user, pw))
         {   
             InterfazPrincipalUsuario InstanciaInterfazPrincipal= new InterfazPrincipalUsuario(InstanciaUsuario);           
+            this.setVisible(false);// Oculta la ventana de Login
             InstanciaInterfazPrincipal.Mostrar(InstanciaUsuario);
             
         }else

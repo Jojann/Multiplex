@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ConexionSQLServer;
-
 /**
  *
  * @author Jojann_2
@@ -12,10 +11,6 @@ package ConexionSQLServer;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Kevin Arnold
- */
 public class Probar {
     public static void main(String[] args)
     {

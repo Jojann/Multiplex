@@ -51,8 +51,7 @@ public class Usuario {
                     Apellido=Respuesta.getString("apellido");
                     Celular=Respuesta.getString("celular");
                     
-                    return true;
-                    
+                    return true;  
                 }else
                 {
                    return false;
