@@ -24,7 +24,7 @@ public class Funcion {
     }
     
     
-    public ResultSet ListarFunciones(String id_usuario)
+    public ResultSet ListarFunciones()
     {
         ResultSet Listado=null;
         

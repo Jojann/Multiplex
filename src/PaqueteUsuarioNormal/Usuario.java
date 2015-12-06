@@ -60,12 +60,12 @@ public class Usuario {
                 if(Respuesta.next())
                 {   
                     //Id_Usuario=Respuesta.getInt("id_usuario");
-                    Id_Usuario=Respuesta.getString("id_usuario");
-                    NombreUsuario=Respuesta.getString("usuario");
-                    Nombre=Respuesta.getString("Nombre");
-                    Apellido=Respuesta.getString("apellido");
-                    Celular=Respuesta.getString("celular");
-                    Rol=Respuesta.getString("Rol");
+                    Id_Usuario=Respuesta.getString("id_usuario").trim();
+                    NombreUsuario=Respuesta.getString("usuario").trim();
+                    Nombre=Respuesta.getString("Nombre").trim();
+                    Apellido=Respuesta.getString("apellido").trim();
+                    Celular=Respuesta.getString("celular").trim();
+                    Rol=Respuesta.getString("Rol").trim();
                     
                     return true;  
                 }else

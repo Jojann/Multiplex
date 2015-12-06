@@ -44,7 +44,15 @@ public class Multiplex extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        contrasena.setText("12345");
         contrasena.setToolTipText("");
+        contrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contrasenaActionPerformed(evt);
+            }
+        });
+
+        usuario.setText("Jojann");
 
         jButton1.setText("Entrar");
         jButton1.setToolTipText("");
@@ -135,7 +143,7 @@ public class Multiplex extends javax.swing.JFrame {
         if(InstanciaUsuario.ValidarLogin(user, pw))
         {   
             
-            JOptionPane.showMessageDialog(null,InstanciaUsuario.getRol());
+            JOptionPane.showMessageDialog(null,"Usted a ingresado como: "+InstanciaUsuario.getRol()+" del sistema");
             
             if("Usuario".equals(InstanciaUsuario.getRol().trim()))
             {
@@ -157,6 +165,10 @@ public class Multiplex extends javax.swing.JFrame {
         }
                            
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void contrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contrasenaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -209,6 +209,11 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
         jLabel5.setText("Celular: ");
 
         jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -352,7 +357,12 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        CancelarFuncion();
+        int respuesta_confirmar = JOptionPane.showConfirmDialog(null, "¿Cancelar reserva?", "Confirmar", JOptionPane.CANCEL_OPTION);
+        if(respuesta_confirmar==0)
+        {
+            CancelarFuncion();
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -360,6 +370,11 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
         LimpiarTabla();
         ListarReservas();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 
