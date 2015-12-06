@@ -19,6 +19,8 @@ public class Multiplex extends javax.swing.JFrame {
     /**
      * Creates new form Multiplex
      */
+    
+    private Usuario InstanciaUsuario= new Usuario();
     public Multiplex() {
         initComponents();
     }
@@ -128,7 +130,7 @@ public class Multiplex extends javax.swing.JFrame {
         String pw = contrasena.getText();
         
         //JOptionPane.showMessageDialog(null, user+" "+pw);
-        Usuario InstanciaUsuario= new Usuario();
+        
         
         if(InstanciaUsuario.ValidarLogin(user, pw))
         {   
