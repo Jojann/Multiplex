@@ -69,12 +69,24 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,6 +185,7 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
         int numero_tiquetes;
         int valor_tiquete;
         int valor_total;
+        int respuesta_confirmar;
         
         if(jTable1.getSelectedRow() >= 0 )
         {
@@ -185,13 +198,19 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
                 
             }else
             {   
+                
                 valor_tiquete=Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),6)).trim());
                 valor_total=valor_tiquete*numero_tiquetes;
-                
-                InstanciaUsuario.AgregarReserva(id_funcion,numero_tiquetes,valor_total);
-                
-                LimpiarTabla();
-                ListarFuncionesActivas();
+                   	
+                respuesta_confirmar = JOptionPane.showConfirmDialog(null, "¿Añadir nueva reserva con "+numero_tiquetes+" boletos?", "Confirmar", JOptionPane.CANCEL_OPTION);
+                if(respuesta_confirmar==0)
+                {
+                    InstanciaUsuario.AgregarReserva(id_funcion,numero_tiquetes,valor_total);
+                    LimpiarTabla();
+                    ListarFuncionesActivas();
+                }
+               
+
             }
    
         }else
@@ -262,7 +281,7 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     public void ListarFuncionesActivas()
     {
    
-        ResultSet Listado= InstanciaFuncion.ListarFunciones();
+        ResultSet Listado= InstanciaFuncion.ListarFunciones(InstanciaUsuario.getId_Usuario());
 
         try {
             if(Listado!=null)
@@ -285,6 +304,7 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -141,7 +141,7 @@ public class Usuario {
             try {
                 EjecutarSentencia = Conexion.createStatement();
                 String Consulta="INSERT INTO reserva (id_funcion,id_cliente,numero_tiquetes,valor_total,estado_reserva) VALUES('"+id_funcion+"','"+Id_Usuario+"','"+numero_tiquetes+"','"+valor_total+"','1' ) ";
-                JOptionPane.showMessageDialog(null,Consulta);
+                //JOptionPane.showMessageDialog(null,Consulta);
                 EjecutarSentencia.executeUpdate(Consulta);
 
             } catch (SQLException ex) {
