@@ -18,7 +18,7 @@ public class Usuario {
     
     private Connection Conexion=null;
     
-    private Integer Id_Usuario;
+    private String Id_Usuario;
     private String NombreUsuario;
     private String Nombre;
     private String Apellido;
@@ -35,6 +35,11 @@ public class Usuario {
         return Rol;
     }
     
+     public String getId_Usuario()
+    {
+        return Id_Usuario;
+    }
+    
     public boolean ValidarLogin(String user, String pw)
     {   
         
@@ -49,7 +54,8 @@ public class Usuario {
                 
                 if(Respuesta.next())
                 {   
-                    Id_Usuario=Respuesta.getInt("id_usuario");
+                    //Id_Usuario=Respuesta.getInt("id_usuario");
+                    Id_Usuario=Respuesta.getString("id_usuario");
                     NombreUsuario=Respuesta.getString("usuario");
                     Nombre=Respuesta.getString("Nombre");
                     Apellido=Respuesta.getString("apellido");
@@ -119,6 +125,23 @@ public class Usuario {
     
     
        
+    }
+    
+     public void AgregarReserva(String id_funcion,int numero_tiquetes,int valor_total)
+    {
+         JOptionPane.showMessageDialog(null,NombreUsuario);
+         Statement EjecutarSentencia;
+        
+            try {
+                EjecutarSentencia = Conexion.createStatement();
+                String Consulta="INSERT INTO reserva (id_funcion,id_cliente,numero_tiquetes,valor_total,estado_reserva) VALUES('"+id_funcion+"','"+Id_Usuario+"','"+numero_tiquetes+"','"+valor_total+"','1' ) ";
+               
+                //EjecutarSentencia.executeUpdate(Consulta);
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"FALLO SENTENCIA: "+ex);
+            }
+  
     }
     
 }

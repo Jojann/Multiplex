@@ -351,6 +351,7 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Modelo.addRow(new Object[]{"1","2","3","4","5"});
         InterfazAgregarNuevaReserva VentanaReserva= new InterfazAgregarNuevaReserva();
+        VentanaReserva.setUsuario(InstanciaUsuario);
         VentanaReserva.Mostrar();
         
          

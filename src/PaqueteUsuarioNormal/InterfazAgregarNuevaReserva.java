@@ -19,12 +19,22 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     
     
     private Funcion InstanciaFuncion= new Funcion();
+    private String id_usuario;
+    private Usuario InstanciaUsuario;
     
     DefaultTableModel Modelo;
     /**
      * Creates new form InterfazAgregarNuevaReserva
      */
+    public void setUsuario(Usuario Instancia)      
+    {   
+        InstanciaUsuario = new Usuario();
+        InstanciaUsuario=Instancia;
+    }
+    
+    
     public InterfazAgregarNuevaReserva() {
+        
         initComponents();
         
         Modelo=(DefaultTableModel) jTable1.getModel();
@@ -147,15 +157,58 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        
-        
-        
-        
+
+        AgregarFuncion();
+   
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void AgregarFuncion()
+    {
+        String id_funcion;
+        int numero_tiquetes;
+        int valor_tiquete;
+        int valor_total;
+        
+        if(jTable1.getSelectedRow() >= 0 )
+        {
+            id_funcion=String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),0));
+            numero_tiquetes=Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),7)));
+            
+            if(numero_tiquetes<=0)
+            {
+                JOptionPane.showMessageDialog(null, "Ingrese un numero de tiquetes mayor que cero.");
+            }else
+            {   
+                valor_tiquete=Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),6)).trim());
+                valor_total=valor_tiquete*numero_tiquetes;
+                
+                InstanciaUsuario.AgregarReserva(id_funcion,numero_tiquetes,valor_total);
+                LimpiarTabla();
+                ListarFuncionesActivas();
+            }
+   
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila.");
+        }
+    }
+    
+     public void LimpiarTabla(){
+        
+        int filas= jTable1.getRowCount();
+        
+        try {
+            for (int i = 0;filas>i; i++) 
+            {
+                Modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
+
+    }
+    
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
