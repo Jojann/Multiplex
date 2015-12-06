@@ -16,7 +16,7 @@ public class ConexionSQLServer {
     public static Connection GetConnection()
     {
         Connection conexion=null;
-        String Conex= "jdbc:sqlserver://localhost;databaseName=MultiplexBD;";
+        String Conex= "jdbc:sqlserver://192.168.1.2;databaseName=MultiplexBD;";
       
         try
         {
