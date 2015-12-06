@@ -18,24 +18,28 @@ import javax.swing.table.DefaultTableModel;
 public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     
     
-    private Funcion InstanciaFuncion= new Funcion();
-    private String id_usuario;
+    private Funcion InstanciaFuncion;
     private Usuario InstanciaUsuario;
     
+    public String id_usuario;
     DefaultTableModel Modelo;
     /**
      * Creates new form InterfazAgregarNuevaReserva
-     */
+    */
+
+    /*
     public void setUsuario(Usuario Instancia)      
     {   
-        InstanciaUsuario = new Usuario();
+        Instancia= new Usuario();
         InstanciaUsuario=Instancia;
-    }
+    }*/
     
     
     public InterfazAgregarNuevaReserva() {
-        
+
         initComponents();
+        InstanciaUsuario= new Usuario();
+        InstanciaFuncion= new Funcion();
         
         Modelo=(DefaultTableModel) jTable1.getModel();
         Modelo.setColumnCount(0);
@@ -163,7 +167,9 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void AgregarFuncion()
-    {
+    {   
+        JOptionPane.showMessageDialog(null,id_usuario);
+        
         String id_funcion;
         int numero_tiquetes;
         int valor_tiquete;
@@ -177,12 +183,14 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
             if(numero_tiquetes<=0)
             {
                 JOptionPane.showMessageDialog(null, "Ingrese un numero de tiquetes mayor que cero.");
+                
             }else
             {   
                 valor_tiquete=Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),6)).trim());
                 valor_total=valor_tiquete*numero_tiquetes;
                 
-                InstanciaUsuario.AgregarReserva(id_funcion,numero_tiquetes,valor_total);
+                InstanciaUsuario.AgregarReserva(id_funcion,numero_tiquetes,valor_total,id_usuario);
+                
                 LimpiarTabla();
                 ListarFuncionesActivas();
             }
@@ -262,7 +270,7 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
             {   
                 while(Listado.next())
                 {   
-                    Modelo.addRow(new Object[]{Listado.getString("id_funcion"),Listado.getString("nombre"),Listado.getString("director"),Listado.getString("fecha"),Listado.getString("hora_inicio"),Listado.getString("hora_fin"),Listado.getString("valor"),"0"});
+                    Modelo.addRow(new Object[]{Listado.getString("id_funcion").trim(),Listado.getString("nombre").trim(),Listado.getString("director").trim(),Listado.getString("fecha").trim(),Listado.getString("hora_inicio").trim(),Listado.getString("hora_fin").trim(),Listado.getString("valor").trim(),"1"});
                 }
                 
             }else

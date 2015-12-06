@@ -39,6 +39,11 @@ public class Usuario {
     {
         return Id_Usuario;
     }
+     
+    public void setId_Usuario(String id)
+    {
+        Id_Usuario=id;
+    }
     
     public boolean ValidarLogin(String user, String pw)
     {   
@@ -127,15 +132,16 @@ public class Usuario {
        
     }
     
-     public void AgregarReserva(String id_funcion,int numero_tiquetes,int valor_total)
+     public void AgregarReserva(String id_funcion,int numero_tiquetes,int valor_total,String id)
     {
-         JOptionPane.showMessageDialog(null,NombreUsuario);
+         
+         
          Statement EjecutarSentencia;
         
             try {
                 EjecutarSentencia = Conexion.createStatement();
-                String Consulta="INSERT INTO reserva (id_funcion,id_cliente,numero_tiquetes,valor_total,estado_reserva) VALUES('"+id_funcion+"','"+Id_Usuario+"','"+numero_tiquetes+"','"+valor_total+"','1' ) ";
-               
+                String Consulta="INSERT INTO reserva (id_funcion,id_cliente,numero_tiquetes,valor_total,estado_reserva) VALUES('"+id_funcion+"','"+id+"','"+numero_tiquetes+"','"+valor_total+"','1' ) ";
+                JOptionPane.showMessageDialog(null,Consulta);
                 //EjecutarSentencia.executeUpdate(Consulta);
 
             } catch (SQLException ex) {
