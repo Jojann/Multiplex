@@ -35,10 +35,11 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     }*/
     
     
-    public InterfazAgregarNuevaReserva() {
+    public InterfazAgregarNuevaReserva(Usuario Instancia) {
 
         initComponents();
-        InstanciaUsuario= new Usuario();
+        InstanciaUsuario= Instancia;
+        
         InstanciaFuncion= new Funcion();
         
         Modelo=(DefaultTableModel) jTable1.getModel();
@@ -168,8 +169,6 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
 
     public void AgregarFuncion()
     {   
-        JOptionPane.showMessageDialog(null,id_usuario);
-        
         String id_funcion;
         int numero_tiquetes;
         int valor_tiquete;
@@ -189,7 +188,7 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
                 valor_tiquete=Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(),6)).trim());
                 valor_total=valor_tiquete*numero_tiquetes;
                 
-                InstanciaUsuario.AgregarReserva(id_funcion,numero_tiquetes,valor_total,id_usuario);
+                InstanciaUsuario.AgregarReserva(id_funcion,numero_tiquetes,valor_total);
                 
                 LimpiarTabla();
                 ListarFuncionesActivas();
@@ -225,7 +224,7 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void Mostrar() {
+    public static void Mostrar(Usuario Instancia) {
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -255,7 +254,7 @@ public class InterfazAgregarNuevaReserva extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazAgregarNuevaReserva().setVisible(true);
+                new InterfazAgregarNuevaReserva(Instancia).setVisible(true);
             }
         });
     }

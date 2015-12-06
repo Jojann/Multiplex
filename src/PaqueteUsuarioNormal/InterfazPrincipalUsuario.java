@@ -5,12 +5,8 @@
  */
 package PaqueteUsuarioNormal;
 
-import PaqueteUsuarioNormal.Usuario;
-import PaqueteUsuarioNormal.InterfazAgregarNuevaReserva;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,18 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class InterfazPrincipalUsuario extends javax.swing.JFrame {
     
     private Usuario InstanciaUsuario;
-    
-    public Usuario getUsuario()
-    {
-        return InstanciaUsuario;
-    }
-    
-    public void setUsuario(Usuario Instancia)
-    {
-        InstanciaUsuario=Instancia;
-    }
-    
-    
+    InterfazAgregarNuevaReserva VentanaReserva;
     /**
      * Creates new form InterfazPrincipal
      */
@@ -43,9 +28,7 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
     public void ListarReservas()
     {   
         ResultSet Listado= InstanciaUsuario.ListadoReservasUsuario();
-        
-        
-        
+
         try {
             if(Listado!=null)
             {   
@@ -132,6 +115,7 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -297,6 +281,13 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
 
         jLabel6.setText("Reservas Activas");
 
+        jButton4.setText("Actualizar Listado");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -307,8 +298,10 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -325,7 +318,8 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -350,19 +344,22 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //Modelo.addRow(new Object[]{"1","2","3","4","5"});
-        InterfazAgregarNuevaReserva VentanaReserva= new InterfazAgregarNuevaReserva();
-        
+        VentanaReserva= new InterfazAgregarNuevaReserva(InstanciaUsuario);
         VentanaReserva.id_usuario=InstanciaUsuario.getId_Usuario();
-        VentanaReserva.Mostrar();
-        
-         
+        VentanaReserva.Mostrar(InstanciaUsuario);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         CancelarFuncion();
-        
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        LimpiarTabla();
+        ListarReservas();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     
 
@@ -384,16 +381,18 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
         }
     }
     
-    public void LimpiarTabla(){
-        
+    public void LimpiarTabla()
+    {   
         int filas= jTable1.getRowCount();
         
-        try {
+        try 
+        {
             for (int i = 0;filas>i; i++) 
             {
                 Modelo.removeRow(0);
             }
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
         }
 
@@ -404,9 +403,6 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
     
     
     
-    /**
-     * @param args the command line arguments
-     */
     public void Mostrar(Usuario Instancia) {
         
 
@@ -451,6 +447,7 @@ public class InterfazPrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFrame jFrame1;
